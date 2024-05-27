@@ -13,6 +13,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  ResourceGroupName : "mku-workflow1-rg"    
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -38,7 +41,7 @@ jobs:
         uses: Azure/powershell@v2
         with:
             # Specify the Az PowerShell script here.
-            inlineScript: New-AzResourceGroup -Name "mku-workflow-rg" -location "switzerlandnorth" -force
+            inlineScript: New-AzResourceGroup -Name ${{ env.ResourceGroupName }} -location "switzerlandnorth" -force
             #  Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
             azPSVersion: latest
 
@@ -48,6 +51,6 @@ jobs:
             # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'tenant', 'managementgroup', 'subscription'
             scope: resourcegroup
             # Provide the name of a resource group, only required for resource Group deployments.
-            resourceGroupName: mku-workflow-rg
+            resourceGroupName: ${{ env.ResourceGroupName }}
             # Specify the path or URL to the Azure Resource Manager template.
             template: ./04_The_first_samples/storage.bicep
