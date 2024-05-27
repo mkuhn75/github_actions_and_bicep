@@ -54,3 +54,6 @@ jobs:
             resourceGroupName: ${{ env.ResourceGroupName }}
             # Specify the path or URL to the Azure Resource Manager template.
             template: ./04_The_first_samples/storage.bicep
+            # Supply deployment parameter values
+            parameters: storageAccountPrefix=twtw
+            deploymentName: "gha${{ github.run_id }}"

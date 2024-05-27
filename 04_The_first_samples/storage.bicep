@@ -1,7 +1,7 @@
 @minLength(3)
 @maxLength(11)
 
-param storageAccountPrefix string = 'twtw'
+param storageAccountPrefix string
 param AzureRegion string = resourceGroup().location
 
 var sta = '${storageAccountPrefix}${uniqueString(subscription().id)}'
