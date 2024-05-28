@@ -1,7 +1,7 @@
 targetScope = 'subscription'
 
 param azureRegion string = 'switzerlandnorth'
-param resourceGroupName string = 'mku-rg-${azureRegion}'
+param resourceGroupName string = 'ctt-rg-${azureRegion}'
 param projectNameTag string = 'Production'
 param projectEnvTag string = 'DevOps'
 
@@ -21,7 +21,7 @@ module appServices 'modules/web-app.bicep' = {
     azureRegion: azureRegion
     appServiceAppDevName: 'appDev${uniqueString(cttresourceGroup.id)}'
     appServiceAppTestName: 'appTest${uniqueString(cttresourceGroup.id)}'
-    appServicePlanName: 'mku-appServiceplan'
+    appServicePlanName: 'ctt-appServiceplan'
     projectNameTag: projectNameTag
     projectEnvTag: projectEnvTag
   }
@@ -32,7 +32,7 @@ module storageServices 'modules/storage.bicep' = {
   name: 'stgDeployment-${uniqueString(cttresourceGroup.id)}'
   params: {
     azureRegion: azureRegion
-    accountNamePrefix: 'mku001'
+    accountNamePrefix: 'ctt001'
     projectNameTag: projectNameTag
     projectEnvTag: projectEnvTag
   }
@@ -43,7 +43,7 @@ module networkServices 'modules/vnet.bicep' = {
   name: 'vnetDeployment-${uniqueString(cttresourceGroup.id)}'
   params: {
     location: azureRegion
-    prefix: 'mku-devops'
+    prefix: 'ctt-devops'
   }
 
 }
