@@ -62,7 +62,6 @@ jobs:
         name: Deploy Resources to Azure
         with:
           failOnStdErr: false
-          scope: subscription
           region: ${{ env.REGION }}
           deploymentName: ${{ github.run_number }}
           template: ./06_multi_deployment/graph.bicep
